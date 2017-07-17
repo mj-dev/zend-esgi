@@ -1,0 +1,28 @@
+<?php
+
+$name = 'Pokemon sans nom';
+$this->headTitle($name);
+?>
+
+<h1><?= $this->escapeHtml($name) ?></h1>
+<p>
+    <a href="<?= $this->url('album', ['action' => 'add']) ?>">Ajouter un Pokemon</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    <?php foreach ($pokemons as $pokemon) : ?>
+        <tr>
+            <td><?= $this->escapeHtml($pokemon->name) ?></td>
+            <td><?= $this->escapeHtml($pokemon->description) ?></td>
+            <td>
+                <a href="<?= $this->url('pokemon', ['action' => 'edit', 'id' => $pokemon->id_pokemon]) ?>">Edit</a>
+                <a href="<?= $this->url('pokemon', ['action' => 'delete', 'id' => $pokemon->id_pokemon]) ?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
